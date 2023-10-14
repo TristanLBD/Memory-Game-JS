@@ -1,0 +1,85 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #333;
+    user-select: none;
+}
+
+body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+#container {
+    width: 800px;
+    height: 800px;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 10px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    border: 2px solid black;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.7s, width 5s;
+    background-color: white;
+}
+
+.card:not(.show):hover {
+    transform: scale(1.05);
+}
+
+.card.found {
+    border: 2px solid green;
+}
+
+.card .face {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.7s ease-in-out;
+    backface-visibility: hidden;
+    transform: perspective(500px) rotateY(0deg);
+}
+
+.card .face.front {
+    background-color: #333;
+}
+
+.card.show .face.front {
+    transform: perspective(500px) rotateY(180deg);
+}
+
+.card .face.back {
+    background-color: #0ff;
+    transform: perspective(500px) rotateY(180deg);
+}
+.card.show .face.back {
+    transform: perspective(500px) rotateY(360deg);
+}
+
+.card .face.back img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
